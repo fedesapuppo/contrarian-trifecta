@@ -32,9 +32,9 @@ export function setDataLang(lang) {
 
 function buildDataPath(filename) {
   if (currentMonth) {
-    return `/data/${currentMarket}/${currentMonth}/${currentLang}/${filename}.json`;
+    return `data/${currentMarket}/${currentMonth}/${currentLang}/${filename}.json`;
   }
-  return `/data/${currentMarket}/${filename}.json`;
+  return `data/${currentMarket}/${filename}.json`;
 }
 
 export async function loadData() {

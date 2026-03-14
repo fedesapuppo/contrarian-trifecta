@@ -35,7 +35,7 @@ export async function refreshMonths(market) {
 
 async function loadMonths() {
   try {
-    const response = await fetch(`/data/${currentMarketRef}/months.json`);
+    const response = await fetch(`data/${currentMarketRef}/months.json`);
     if (response.ok) {
       availableMonths = await response.json();
     } else {
