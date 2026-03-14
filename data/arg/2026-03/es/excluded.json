@@ -59,7 +59,7 @@
     "ai_catalyst": null,
     "excluded": true,
     "exclusion_reasons": [
-      "ratio_corriente_debajo_de_0.5"
+      "ratio_corriente_menor_a_0.5"
     ],
     "divergence_flag": false,
     "pre_earnings_risk": false
@@ -125,7 +125,7 @@
     "excluded": true,
     "exclusion_reasons": [
       "ratio_corriente_marginal_sin_rescate",
-      "eps_y_margen_negativos"
+      "ganancias_y_margen_negativos"
     ],
     "divergence_flag": false,
     "pre_earnings_risk": false
@@ -190,7 +190,7 @@
     "ai_catalyst": null,
     "excluded": true,
     "exclusion_reasons": [
-      "ratio_corriente_debajo_de_0.5"
+      "ratio_corriente_menor_a_0.5"
     ],
     "divergence_flag": false,
     "pre_earnings_risk": false

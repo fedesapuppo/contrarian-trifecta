@@ -1,7 +1,7 @@
 import { state } from './data.js';
 import { createTable, scoreSpan, miniBarColor, ratingFor, fmt, pct, escapeHtml } from './table.js';
 import { getFilters } from './filters.js';
-import { t } from './i18n.js';
+import { t, translateBadge } from './i18n.js';
 
 export function renderTrifecta() {
   const panel = document.getElementById('panel-trifecta');
@@ -62,11 +62,13 @@ function buildPickCard(stock, rank) {
   const r = ratingFor(stock.trifecta_score);
   const scoreClass = stock.trifecta_score >= 70 ? 'score--high' : stock.trifecta_score >= 50 ? 'score--mid' : 'score--low';
 
-  const classificationBadge = (sent.ai_classification || stock.ai_classification)
-    ? `<span class="badge badge--${escapeHtml(sent.ai_classification || stock.ai_classification)}" title="AI selloff classification">${escapeHtml(sent.ai_classification || stock.ai_classification)}</span>`
+  const classVal = sent.ai_classification || stock.ai_classification;
+  const classificationBadge = classVal
+    ? `<span class="badge badge--${escapeHtml(classVal)}" title="AI selloff classification">${escapeHtml(translateBadge(classVal))}</span>`
     : '';
-  const confidenceBadge = (sent.ai_confidence || stock.ai_confidence)
-    ? `<span class="badge badge--${escapeHtml(sent.ai_confidence || stock.ai_confidence)}" title="AI confidence level">${escapeHtml(sent.ai_confidence || stock.ai_confidence)}</span>`
+  const confVal = sent.ai_confidence || stock.ai_confidence;
+  const confidenceBadge = confVal
+    ? `<span class="badge badge--${escapeHtml(confVal)}" title="AI confidence level">${escapeHtml(translateBadge(confVal))}</span>`
     : '';
   const divergenceBadge = stock.divergence_flag
     ? `<span class="badge badge--divergence" title="${t('legend.divergenceDesc')}">${t('badge.divergence')}</span>`

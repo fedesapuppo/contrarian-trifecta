@@ -56,6 +56,8 @@ const translations = {
     // Badges
     'badge.divergence': 'Divergence',
     'badge.preEarnings': 'Pre-Earnings',
+    'badge.high': 'High',
+    'badge.low': 'Low',
 
     // Technical
     'technical.col.ticker': 'Ticker',
@@ -134,6 +136,33 @@ const translations = {
     'legend.worseThanSector': 'Worse than sector',
     'legend.worseDesc': 'Red down-arrow: metric trails sector median',
 
+    // Market selector
+    'toolbar.usMarket': 'US Market',
+    'toolbar.argentina': 'Argentina',
+
+    // Theme toggle
+    'toolbar.themeLight': 'LIGHT',
+    'toolbar.themeDark': 'DARK',
+
+    // Legend — rating descriptions
+    'legend.ratingHighDesc': 'Trifecta score 80+',
+    'legend.ratingModerateDesc': 'Trifecta score 65 - 79',
+    'legend.ratingWatchDesc': 'Trifecta score 50 - 64',
+    'legend.ratingLowDesc': 'Trifecta score 30 - 49',
+    'legend.ratingFearDesc': 'Trifecta score below 30',
+
+    // Legend — badge labels
+    'badge.emotional': 'Emotional',
+    'badge.cyclical': 'Cyclical',
+    'badge.structural': 'Structural',
+    'badge.highConf': 'High Confidence',
+    'badge.lowConf': 'Low Confidence',
+
+    // Legend — technical indicator labels
+    'legend.rsiBelow30': 'RSI below 30',
+    'legend.rsi30to70': 'RSI 30 - 70',
+    'legend.rsiAbove70': 'RSI above 70',
+
     // Month selector
     'month.label': 'Select month',
 
@@ -197,6 +226,8 @@ const translations = {
     // Badges
     'badge.divergence': 'Divergencia',
     'badge.preEarnings': 'Pre-Resultados',
+    'badge.high': 'Alta',
+    'badge.low': 'Baja',
 
     // Technical
     'technical.col.ticker': 'Ticker',
@@ -275,6 +306,33 @@ const translations = {
     'legend.worseThanSector': 'Peor que el sector',
     'legend.worseDesc': 'Flecha roja: metrica por debajo de mediana del sector',
 
+    // Market selector
+    'toolbar.usMarket': 'Mercado EEUU',
+    'toolbar.argentina': 'Argentina',
+
+    // Theme toggle
+    'toolbar.themeLight': 'CLARO',
+    'toolbar.themeDark': 'OSCURO',
+
+    // Legend — rating descriptions
+    'legend.ratingHighDesc': 'Puntuacion Trifecta 80+',
+    'legend.ratingModerateDesc': 'Puntuacion Trifecta 65 - 79',
+    'legend.ratingWatchDesc': 'Puntuacion Trifecta 50 - 64',
+    'legend.ratingLowDesc': 'Puntuacion Trifecta 30 - 49',
+    'legend.ratingFearDesc': 'Puntuacion Trifecta menor a 30',
+
+    // Legend — badge labels
+    'badge.emotional': 'Emocional',
+    'badge.cyclical': 'Ciclico',
+    'badge.structural': 'Estructural',
+    'badge.highConf': 'Alta Confianza',
+    'badge.lowConf': 'Baja Confianza',
+
+    // Legend — technical indicator labels
+    'legend.rsiBelow30': 'RSI debajo de 30',
+    'legend.rsi30to70': 'RSI 30 - 70',
+    'legend.rsiAbove70': 'RSI encima de 70',
+
     // Month selector
     'month.label': 'Seleccionar mes',
 
@@ -300,6 +358,13 @@ export function setLang(lang) {
     currentLang = lang;
     sessionStorage.setItem(STORAGE_KEY, lang);
   }
+}
+
+export function translateBadge(value) {
+  if (!value) return value;
+  const key = `badge.${value.toLowerCase()}`;
+  const result = t(key);
+  return result === key ? value : result;
 }
 
 export function initLang() {
