@@ -43,7 +43,6 @@ async function onLangChange() {
 
 async function onMonthChange() {
   syncDataState();
-  updateStaticLabels();
   await loadData();
   initFilters();
   rerenderAll();

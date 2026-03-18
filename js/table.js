@@ -28,11 +28,14 @@ export function createTable(container, { columns, data, onRowClick, rowId }) {
 
   columns.forEach(col => {
     const th = document.createElement('th');
-    th.textContent = col.label;
     th.setAttribute('scope', 'col');
     th.dataset.key = col.key;
     if (col.title) th.title = col.title;
     if (col.align) th.style.textAlign = col.align;
+
+    const labelSpan = document.createTextNode(col.label);
+    th.appendChild(labelSpan);
+
     th.addEventListener('click', () => {
       if (sortCol === col.key) {
         sortDir = sortDir === 'asc' ? 'desc' : 'asc';

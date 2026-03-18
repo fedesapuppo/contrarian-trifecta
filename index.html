@@ -474,6 +474,24 @@
       color: var(--text-muted);
       line-height: 1.6;
     }
+    .footer p + p { margin-top: 8px; }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    .cta-banner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+    }
+    .cta-banner__tagline {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 20px;
+    }
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
@@ -712,13 +730,17 @@
     <a href="app.html" class="btn-cta">Enter the Screener</a>
   </section>
 
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <p class="cta-banner__tagline">A screener spots opportunities. An advisor helps you act on them.</p>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
-    <p>
-      This tool is for informational purposes only and does not constitute investment advice.
-      Past performance does not guarantee future results. Always conduct your own research
-      and consult a qualified financial advisor before making investment decisions.
+    <p id="landing-disclaimer">
+      This tool is for informational and educational purposes. It does not constitute financial advice or investment recommendations. Consult a professional before making decisions.
     </p>
+    <p id="landing-attribution">Design &amp; development: Federico Sapuppo | Contact: <a href="mailto:fedesapuppo@hotmail.com">fedesapuppo@hotmail.com</a></p>
   </footer>
 
   <script>
@@ -936,7 +958,10 @@
         'final.title': 'See what the crowd is missing',
         'final.desc': 'The screener runs monthly, scoring every stock in the universe across all three pillars. No sign-up. No paywall. Just the data.',
         'final.cta': 'Enter the Screener',
-        'footer': 'This tool is for informational purposes only and does not constitute investment advice. Past performance does not guarantee future results. Always conduct your own research and consult a qualified financial advisor before making investment decisions.',
+        'footer': 'This tool is for informational and educational purposes. It does not constitute financial advice or investment recommendations. Consult a professional before making decisions.',
+        'footer.attribution': 'Design & development: Federico Sapuppo',
+        'footer.contact': 'fedesapuppo@hotmail.com',
+        'cta.tagline': 'A screener spots opportunities. An advisor helps you act on them.',
         'years': 'years'
       },
       es: {
@@ -1007,8 +1032,11 @@
         'final.title': 'Mirá lo que la multitud se está perdiendo',
         'final.desc': 'El screener se ejecuta mensualmente, puntuando cada acción del universo en los tres pilares. Sin registro. Sin muro de pago. Sólo los datos.',
         'final.cta': 'Entrar al Screener',
-        'footer': 'Esta herramienta es sólo con fines informativos y no constituye asesoramiento de inversión. El rendimiento pasado no garantiza resultados futuros. Siempre hacé tu propia investigación y consultá a un asesor financiero calificado antes de tomar decisiones de inversión.',
-        'years': 'años'
+        'footer': 'Esta herramienta es informativa y educativa. No constituye asesoramiento financiero ni recomendaci\u00f3n de inversi\u00f3n. Consult\u00e1 a un profesional antes de tomar decisiones.',
+        'footer.attribution': 'Dise\u00f1o y desarrollo: Federico Sapuppo',
+        'footer.contact': 'fedesapuppo@hotmail.com',
+        'cta.tagline': 'Un screener identifica oportunidades. Un asesor te ayuda a actuar sobre ellas.',
+        'years': 'a\u00f1os'
       }
     };
 
@@ -1115,8 +1143,14 @@
       finalCta.querySelector('p').textContent = tx['final.desc'];
       finalCta.querySelector('.btn-cta').textContent = tx['final.cta'];
 
+      // CTA Banner
+      document.querySelector('.cta-banner__tagline').textContent = tx['cta.tagline'];
+
       // Footer
-      document.querySelector('.footer p').textContent = tx['footer'];
+      document.getElementById('landing-disclaimer').textContent = tx['footer'];
+      const attrEl = document.getElementById('landing-attribution');
+      const email = tx['footer.contact'];
+      attrEl.innerHTML = tx['footer.attribution'] + ' | Contact: <a href="mailto:' + email + '">' + email + '</a>';
 
       // Update slider "years" label
       document.getElementById('lbl-years').textContent = document.getElementById('sl-years').value + ' ' + tx['years'];

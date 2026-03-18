@@ -1,7 +1,7 @@
 import { state } from './data.js';
 import { createTable, scoreSpan, fmt, pct, escapeHtml } from './table.js';
 import { getFilters } from './filters.js';
-import { t, translateBadge } from './i18n.js';
+import { t } from './i18n.js';
 
 export function renderSentiment() {
   const panel = document.getElementById('panel-sentiment');
@@ -41,18 +41,18 @@ export function renderSentiment() {
 
 function renderClassification(row) {
   if (!row.ai_classification) return '-';
-  return `<span class="badge badge--${escapeHtml(row.ai_classification)}">${escapeHtml(translateBadge(row.ai_classification))}</span>`;
+  return `<span class="badge badge--${escapeHtml(row.ai_classification)}">${escapeHtml(row.ai_classification)}</span>`;
 }
 
 function renderConfidence(row) {
   if (!row.ai_confidence) return '-';
-  return `<span class="badge badge--${escapeHtml(row.ai_confidence)}">${escapeHtml(translateBadge(row.ai_confidence))}</span>`;
+  return `<span class="badge badge--${escapeHtml(row.ai_confidence)}">${escapeHtml(row.ai_confidence)}</span>`;
 }
 
 function getStockPrice(ticker) {
-  const trifectaMatch = state.trifecta.find(s => s.ticker === ticker);
+  const trifectaMatch = state.trifecta.find(t => t.ticker === ticker);
   if (trifectaMatch && trifectaMatch.price != null) return trifectaMatch;
-  const techMatch = state.technical.find(s => s.ticker === ticker);
+  const techMatch = state.technical.find(t => t.ticker === ticker);
   if (techMatch && techMatch.price != null) return techMatch;
   return null;
 }
@@ -89,7 +89,7 @@ function applyFilters(data) {
       if (!(s.ticker || '').toLowerCase().includes(q) && !(s.company || '').toLowerCase().includes(q)) return false;
     }
     if (f.sector) {
-      const trifectaMatch = state.trifecta.find(st => st.ticker === s.ticker);
+      const trifectaMatch = state.trifecta.find(t => t.ticker === s.ticker);
       if (trifectaMatch && trifectaMatch.sector !== f.sector) return false;
     }
     return true;

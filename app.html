@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contrarian Trifecta Screener</title>
+  <title>Three-Pillar Analytical Station | Contrarian Trifecta</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="toolbar">
     <div class="toolbar__brand">
-      <h1 class="toolbar__title">Contrarian Trifecta Screener</h1>
-      <span class="toolbar__subtitle">Three-pillar stock screening workstation</span>
-      <span class="toolbar__date" id="month-display"></span>
-    </div>
-    <div class="toolbar__controls">
+      <h1 class="toolbar__title">Three-Pillar Analytical Station for Stock Analysis</h1>
+      <span class="toolbar__subtitle">Contrarian Trifecta</span>
       <select id="sector-filter" class="select-input" aria-label="Filter by sector">
         <option value="">All Sectors</option>
       </select>
+    </div>
+    <div class="toolbar__controls">
       <select id="month-selector" class="select-input" aria-label="Select month"></select>
       <select id="lang-selector" class="select-input" aria-label="Language">
         <option value="en">EN</option>
@@ -175,8 +174,13 @@
     <section id="panel-sentiment" class="tab-panel" role="tabpanel" aria-labelledby="tab-sentiment" hidden></section>
   </main>
 
+  <section id="cta-section" class="cta-section">
+    <p class="cta-section__tagline">A screener spots opportunities. An advisor helps you act on them.</p>
+  </section>
+
   <footer class="footer">
-    <p>Data refreshed from pipeline output. Scores are 0-100, sector-relative. Not financial advice.</p>
+    <p id="footer-disclaimer">This tool is for informational and educational purposes. It does not constitute financial advice or investment recommendations. Consult a professional before making decisions.</p>
+    <p id="footer-attribution">Design &amp; development: Federico Sapuppo | Contact: <a href="mailto:fedesapuppo@hotmail.com" id="footer-email">fedesapuppo@hotmail.com</a></p>
   </footer>
 
   <script>
