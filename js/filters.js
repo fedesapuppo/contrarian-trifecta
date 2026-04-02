@@ -2,6 +2,21 @@ import { rerenderAll } from './tabs.js';
 import { getSectors, getMarket } from './data.js';
 import { t } from './i18n.js';
 
+export function applyFilters(data, { sectorOf } = {}) {
+  const f = getFilters();
+  return data.filter(s => {
+    if (f.search) {
+      const q = f.search.toLowerCase();
+      if (!(s.ticker || '').toLowerCase().includes(q) && !(s.company || '').toLowerCase().includes(q)) return false;
+    }
+    if (f.sector) {
+      const sector = sectorOf ? sectorOf(s) : s.sector;
+      if (sector && sector !== f.sector) return false;
+    }
+    return true;
+  });
+}
+
 function storageKey() {
   return `trifecta-filters-${getMarket()}`;
 }
@@ -15,10 +30,18 @@ export function getFilters() {
   return { ...filters };
 }
 
+let bound = false;
+
 export function initFilters() {
   loadFromStorage();
   populateSectors();
-  bindGlobalControls();
+  if (!bound) {
+    bindGlobalControls();
+    bound = true;
+  } else {
+    document.getElementById('global-search').value = filters.search;
+    document.getElementById('sector-filter').value = filters.sector;
+  }
 }
 
 function loadFromStorage() {

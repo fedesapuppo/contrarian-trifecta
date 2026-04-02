@@ -1,13 +1,15 @@
 import { state } from './data.js';
 import { createTable, scoreSpan, fmt, pct, escapeHtml } from './table.js';
-import { getFilters } from './filters.js';
+import { applyFilters } from './filters.js';
 import { t } from './i18n.js';
 
 export function renderSentiment() {
   const panel = document.getElementById('panel-sentiment');
   panel.innerHTML = '';
 
-  const data = applyFilters(state.sentiment);
+  const data = applyFilters(state.sentiment, {
+    sectorOf: s => state.trifecta.find(t => t.ticker === s.ticker)?.sector
+  });
 
   if (!data.length) {
     panel.innerHTML = `<div class="empty-state"><p class="empty-state__title">${t('sentiment.empty')}</p><p>${t('sentiment.emptySub')}</p></div>`;
@@ -81,17 +83,3 @@ function buildExcludedSection() {
   return details;
 }
 
-function applyFilters(data) {
-  const f = getFilters();
-  return data.filter(s => {
-    if (f.search) {
-      const q = f.search.toLowerCase();
-      if (!(s.ticker || '').toLowerCase().includes(q) && !(s.company || '').toLowerCase().includes(q)) return false;
-    }
-    if (f.sector) {
-      const trifectaMatch = state.trifecta.find(t => t.ticker === s.ticker);
-      if (trifectaMatch && trifectaMatch.sector !== f.sector) return false;
-    }
-    return true;
-  });
-}

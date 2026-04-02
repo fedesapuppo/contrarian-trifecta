@@ -1,6 +1,6 @@
 import { state } from './data.js';
-import { createTable, scoreSpan, miniBarColor, ratingFor, fmt, pct, escapeHtml } from './table.js';
-import { getFilters } from './filters.js';
+import { createTable, scoreSpan, scoreClass, ratingFor, fmt, pct, escapeHtml } from './table.js';
+import { applyFilters } from './filters.js';
 import { t } from './i18n.js';
 
 export function renderTrifecta() {
@@ -60,7 +60,7 @@ function buildPickCard(stock, rank) {
 
   const sent = getSentimentData(stock.ticker);
   const r = ratingFor(stock.trifecta_score);
-  const scoreClass = stock.trifecta_score >= 70 ? 'score--high' : stock.trifecta_score >= 50 ? 'score--mid' : 'score--low';
+  const trifectaClass = scoreClass(stock.trifecta_score);
 
   const classificationBadge = (sent.ai_classification || stock.ai_classification)
     ? `<span class="badge badge--${escapeHtml(sent.ai_classification || stock.ai_classification)}" title="AI selloff classification">${escapeHtml(sent.ai_classification || stock.ai_classification)}</span>`
@@ -87,7 +87,7 @@ function buildPickCard(stock, rank) {
         ${stock.price ? `<span class="card__price">$${fmt(stock.price, 2)}</span>` : ''}
       </div>
       <div class="pick-card__trifecta">
-        <span class="pick-card__trifecta-score ${scoreClass}">${stock.trifecta_score ?? '-'}</span>
+        <span class="pick-card__trifecta-score ${trifectaClass}">${stock.trifecta_score ?? '-'}</span>
         <span class="pick-card__trifecta-label">${escapeHtml(r.text)}</span>
       </div>
     </div>
@@ -107,7 +107,7 @@ function buildPickCard(stock, rank) {
 }
 
 function pillarSpan(label, value) {
-  const cls = value >= 70 ? 'score--high' : value >= 50 ? 'score--mid' : 'score--low';
+  const cls = scoreClass(value);
   return `<div class="pick-card__pillar">
     <span class="pick-card__pillar-value ${cls}">${value ?? '-'}</span>
     <span class="pick-card__pillar-label">${label}</span>
@@ -129,18 +129,6 @@ function renderFlags(row) {
   if (row.divergence_flag) html += `<span class="badge badge--divergence" title="${t('legend.divergenceDesc')}">${t('badge.divergence')}</span> `;
   if (row.pre_earnings_risk) html += `<span class="badge badge--earnings" title="${t('legend.earningsDesc')}">${t('badge.preEarnings')}</span>`;
   return html;
-}
-
-function applyFilters(data) {
-  const f = getFilters();
-  return data.filter(s => {
-    if (f.search) {
-      const q = f.search.toLowerCase();
-      if (!(s.ticker || '').toLowerCase().includes(q) && !(s.company || '').toLowerCase().includes(q)) return false;
-    }
-    if (f.sector && s.sector !== f.sector) return false;
-    return true;
-  });
 }
 
 function addRankNumbers(container, offset) {

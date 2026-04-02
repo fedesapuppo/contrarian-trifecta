@@ -1,6 +1,6 @@
 import { state } from './data.js';
 import { createTable, scoreSpan, fmt, pct, escapeHtml } from './table.js';
-import { getFilters } from './filters.js';
+import { applyFilters } from './filters.js';
 import { t } from './i18n.js';
 
 export function renderTechnical() {
@@ -13,7 +13,7 @@ export function renderTechnical() {
     { key: 'ticker', label: t('technical.col.ticker'), title: 'Stock ticker symbol', render: r => `<strong>${escapeHtml(r.ticker)}</strong>` },
     { key: 'company', label: t('technical.col.company'), title: 'Company name', render: r => escapeHtml(r.company) },
     { key: 'price', label: t('technical.col.price'), title: 'Current stock price', align: 'right', render: r => r.price ? `$${fmt(r.price, 2)}` : '-' },
-    { key: 'change', label: t('technical.col.dayChange'), title: 'Daily price change percentage', align: 'right', render: renderChange },
+    { key: 'change', label: t('technical.col.dayChange'), title: 'Daily price change percentage', align: 'right', render: r => coloredPct(r.change) },
     { key: 'sma20', label: t('technical.col.sma20'), title: 'Distance from 20-day simple moving average (negative = below SMA)', align: 'right', render: r => coloredPct(r.sma20) },
     { key: 'sma200', label: t('technical.col.sma200'), title: 'Distance from 200-day simple moving average (negative = below SMA)', align: 'right', render: r => coloredPct(r.sma200) },
     { key: 'rsi', label: t('technical.col.rsi'), title: 'Relative Strength Index: below 30 = oversold, above 70 = overbought', align: 'center', render: renderRsi },
@@ -24,13 +24,6 @@ export function renderTechnical() {
   ];
 
   createTable(panel, { columns, data });
-}
-
-function renderChange(row) {
-  if (row.change == null) return '-';
-  const cls = row.change >= 0 ? 'score--high' : 'score--low';
-  const sign = row.change >= 0 ? '+' : '';
-  return `<span class="${cls}">${sign}${row.change.toFixed(1)}%</span>`;
 }
 
 function coloredPct(val) {
@@ -50,9 +43,9 @@ function renderRsi(row) {
 }
 
 function renderDistance(row) {
-  if (!row.high_52w || !row.price) return '-';
-  const pctFromLow = row.low_52w && row.high_52w !== row.low_52w
-    ? ((row.price - row.low_52w) / (row.high_52w - row.low_52w) * 100)
+  if (!row.range_high_52w || !row.price) return '-';
+  const pctFromLow = row.range_low_52w && row.range_high_52w !== row.range_low_52w
+    ? ((row.price - row.range_low_52w) / (row.range_high_52w - row.range_low_52w) * 100)
     : 50;
 
   const container = document.createElement('div');
@@ -73,14 +66,3 @@ function formatVolume(vol) {
   return vol.toString();
 }
 
-function applyFilters(data) {
-  const f = getFilters();
-  return data.filter(s => {
-    if (f.search) {
-      const q = f.search.toLowerCase();
-      if (!(s.ticker || '').toLowerCase().includes(q) && !(s.company || '').toLowerCase().includes(q)) return false;
-    }
-    if (f.sector && s.sector !== f.sector) return false;
-    return true;
-  });
-}

@@ -61,7 +61,7 @@
     "ai_catalyst": null,
     "excluded": true,
     "exclusion_reasons": [
-      "current_ratio_below_0.5"
+      "ratio_corriente_debajo_de_0.5"
     ],
     "divergence_flag": false,
     "pre_earnings_risk": false
@@ -128,8 +128,8 @@
     "ai_catalyst": null,
     "excluded": true,
     "exclusion_reasons": [
-      "current_ratio_marginal_no_rescue",
-      "negative_eps_and_margin"
+      "ratio_corriente_marginal_sin_rescate",
+      "eps_y_margen_negativos"
     ],
     "divergence_flag": false,
     "pre_earnings_risk": false
@@ -196,7 +196,7 @@
     "ai_catalyst": null,
     "excluded": true,
     "exclusion_reasons": [
-      "current_ratio_below_0.5"
+      "ratio_corriente_debajo_de_0.5"
     ],
     "divergence_flag": false,
     "pre_earnings_risk": false
@@ -263,7 +263,7 @@
     "ai_catalyst": null,
     "excluded": true,
     "exclusion_reasons": [
-      "current_ratio_below_0.5"
+      "ratio_corriente_debajo_de_0.5"
     ],
     "divergence_flag": false,
     "pre_earnings_risk": false
@@ -330,7 +330,7 @@
     "ai_catalyst": null,
     "excluded": true,
     "exclusion_reasons": [
-      "current_ratio_marginal_no_rescue"
+      "ratio_corriente_marginal_sin_rescate"
     ],
     "divergence_flag": false,
     "pre_earnings_risk": false
