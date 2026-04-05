@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/contrarian-trifecta/favicon.ico" type="image/x-icon">
   <title>Contrarian Trifecta Screener</title>
   <meta name="description" content="Find undervalued stocks using the Contrarian Trifecta strategy — low P/E, high dividend yield, and insider buying.">
   <meta property="og:title" content="Contrarian Trifecta Screener">
@@ -71,6 +71,9 @@
       text-transform: uppercase;
       color: var(--accent);
       font-weight: 600;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
     }
     .header__nav a {
       font-family: var(--font-mono);
@@ -510,6 +513,10 @@
       .comparison-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
       .hero { padding-top: 48px; padding-bottom: 40px; }
       section { padding-top: 40px; padding-bottom: 40px; }
+      .header { padding: 16px 16px 0; gap: 12px; }
+      .header__brand { font-size: 11px; min-width: 0; }
+      .header__brand img { height: 36px !important; margin-right: 8px !important; }
+      .header__nav button { padding: 6px 10px; font-size: 11px; }
     }
   </style>
 </head>
