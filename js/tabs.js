@@ -1,7 +1,7 @@
 import { state } from './data.js';
 import { t } from './i18n.js';
 
-const TABS = ['trifecta', 'technical', 'fundamentals', 'sentiment'];
+const TABS = ['trifecta', 'technical', 'fundamentals', 'sentiment', 'backtest'];
 
 function getTabDescription(name) {
   const techCount = state.technical?.length || 0;
@@ -14,7 +14,8 @@ function getTabDescription(name) {
     trifecta: () => t('tabDesc.trifecta')(trifectaCount),
     technical: () => t('tabDesc.technical')(techCount),
     fundamentals: () => t('tabDesc.fundamentals')(fundCount, excludedCount),
-    sentiment: () => t('tabDesc.sentiment')(sentimentCount)
+    sentiment: () => t('tabDesc.sentiment')(sentimentCount),
+    backtest: () => t('tabDesc.backtest')
   };
   return generators[name]?.() || '';
 }

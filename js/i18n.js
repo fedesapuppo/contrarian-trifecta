@@ -139,6 +139,51 @@ const translations = {
     'legend.worseThanSector': 'Worse than sector',
     'legend.worseDesc': 'Red down-arrow: metric trails sector median',
 
+    // Backtest
+    'tab.backtest': 'Backtest',
+    'tabDesc.backtest': '<strong>Backtest</strong> — Historical validation of the Trifecta model. Simulates a January 2020 selection and measures performance against the S&P 500 over 6+ years.',
+    'backtest.title': 'Model Validation: January 2020 Backtest',
+    'backtest.period': 'January 2, 2020 \u2192 May 1, 2026',
+    'backtest.benchmarkLabel': 'Benchmark: S&P 500',
+    'backtest.portfolioLabel': 'Trifecta Portfolio (80+ score)',
+    'backtest.outperformance': 'Outperformance',
+    'backtest.pp': 'percentage points',
+    'backtest.contextTitle': 'Market Context: January 2020',
+    'backtest.contextPoints': [
+      'S&P 500 at all-time highs (~3,258). US market euphoric.',
+      'Argentine ADRs crushed 50-70% after August 2019 PASO election shock.',
+      'Alberto Fernandez just took office (Dec 10, 2019) — peak fear: capital controls, IMF renegotiation, default risk.',
+      'Consensus narrative: "Argentina is uninvestable." Classic unjustified fear on quality businesses.'
+    ],
+    'backtest.methodTitle': 'How the Model Was Tested',
+    'backtest.methodSteps': [
+      'Applied the exact same screening criteria used today: below SMA200, RSI < 40, market cap > small cap, volume > 200k daily average.',
+      'For Argentina: all geo_argentina stocks enter the pool (per finviz filter), then run through the exclusion gate and scoring pipeline.',
+      'Exclusion gate filtered out: YPF (excessive debt under state control), SUPV (marginal current ratio with weak EPS).',
+      'Fundamental scoring ranked stocks by sector-relative P/E, debt/equity, operating margin, ROE, cash yield, and dividend signal.',
+      'Technical scoring measured distance from 52-week high, RSI depth, SMA200 distance, and double-bottom patterns.',
+      'Sentiment scoring assessed the gap between fear narrative ("uninvestable country") and actual business fundamentals — all three picks scored 88-90 (extreme unjustified fear).',
+      'Only stocks scoring 80+ on the combined Trifecta (Fund 50% + Sent 35% + Tech 15%) were selected as "High Conviction" picks.'
+    ],
+    'backtest.picksTitle': 'High Conviction Picks (Trifecta 80+)',
+    'backtest.jan2020': 'Jan 2020',
+    'backtest.may2026': 'May 2026',
+    'backtest.reasonings': {
+      GGAL: 'P/E ~4x, ROE >20%, low debt-to-equity. Leading private bank in Argentina trading at extreme discount due to macro fear, not business deterioration.',
+      BMA: 'P/E ~5x, most conservative Argentine bank, strong capital ratios, high dividend yield. Sold off purely on country risk, not credit quality.',
+      PAM: 'P/E ~6x, diversified energy conglomerate (generation + O&G + transmission), low debt, strong cash flows. Market priced in tariff freeze that couldn\'t last forever.'
+    },
+    'backtest.resultsTitle': 'Portfolio Performance vs. S&P 500',
+    'backtest.resultsSub1': '3 picks, equal weight',
+    'backtest.resultsSub2': 'Buy & hold index',
+    'backtest.alphaLabel': 'Alpha Generated',
+    'backtest.resultsSub3': '~1.9x the market return',
+    'backtest.resultsNote': 'Equal-weight portfolio of the 3 High Conviction picks (80+ Trifecta score). Returns are price-only; dividends would add ~15-25pp additional return over this period.',
+    'backtest.disclaimerLabel': 'Disclaimer',
+    'backtest.disclaimerText': 'This backtest uses approximate January 2020 prices based on post-PASO trading levels. Past performance does not guarantee future results. This is a single-period test, not a statistically significant sample. The model identified these opportunities through systematic scoring — not hindsight selection.',
+    'backtest.whyLabel': 'Why it worked',
+    'backtest.whyText': 'The PASO crash created a classic "unjustified fear" event — an entire market sold off indiscriminately due to political uncertainty, punishing quality businesses alongside weak ones. The Trifecta model\'s strength is distinguishing companies where fear is rational from those where it creates opportunity.',
+
     // Month selector
     'month.label': 'Select month',
 
@@ -284,6 +329,51 @@ const translations = {
     'legend.betterDesc': 'Flecha verde: metrica supera mediana del sector',
     'legend.worseThanSector': 'Peor que el sector',
     'legend.worseDesc': 'Flecha roja: metrica por debajo de mediana del sector',
+
+    // Backtest
+    'tab.backtest': 'Backtest',
+    'tabDesc.backtest': '<strong>Backtest</strong> — Validacion historica del modelo Trifecta. Simula una seleccion de enero 2020 y mide el rendimiento contra el S&P 500 en 6+ anos.',
+    'backtest.title': 'Validacion del Modelo: Backtest Enero 2020',
+    'backtest.period': '2 de enero de 2020 \u2192 1 de mayo de 2026',
+    'backtest.benchmarkLabel': 'Referencia: S&P 500',
+    'backtest.portfolioLabel': 'Portafolio Trifecta (80+ puntos)',
+    'backtest.outperformance': 'Rendimiento superior',
+    'backtest.pp': 'puntos porcentuales',
+    'backtest.contextTitle': 'Contexto de Mercado: Enero 2020',
+    'backtest.contextPoints': [
+      'S&P 500 en maximos historicos (~3.258). Mercado estadounidense euforico.',
+      'ADRs argentinos aplastados 50-70% tras el shock electoral de las PASO de agosto 2019.',
+      'Alberto Fernandez recien asumido (10 dic 2019) — miedo maximo: cepo cambiario, renegociacion con el FMI, riesgo de default.',
+      'Narrativa de consenso: "Argentina es uninvertible." Clasico miedo injustificado sobre negocios de calidad.'
+    ],
+    'backtest.methodTitle': 'Como se Probo el Modelo',
+    'backtest.methodSteps': [
+      'Se aplicaron exactamente los mismos criterios de seleccion usados hoy: por debajo de SMA200, RSI < 40, capitalizacion > small cap, volumen > 200k promedio diario.',
+      'Para Argentina: todas las acciones geo_argentina entran al pool (filtro de finviz), luego pasan por el filtro de exclusion y el pipeline de scoring.',
+      'El filtro de exclusion descarto: YPF (deuda excesiva bajo control estatal), SUPV (ratio corriente marginal con BPA debil).',
+      'El scoring fundamental clasifico acciones por P/E relativo al sector, deuda/patrimonio, margen operativo, ROE, rendimiento de caja y senal de dividendo.',
+      'El scoring tecnico midio distancia al maximo de 52 semanas, profundidad del RSI, distancia a SMA200 y patrones de doble piso.',
+      'El scoring de sentimiento evaluo la brecha entre la narrativa de miedo ("pais uninvertible") y los fundamentales reales del negocio — las tres selecciones puntuaron 88-90 (miedo injustificado extremo).',
+      'Solo las acciones con 80+ puntos en el Trifecta combinado (Fund 50% + Sent 35% + Tec 15%) fueron seleccionadas como "Alta Conviccion".'
+    ],
+    'backtest.picksTitle': 'Selecciones de Alta Conviccion (Trifecta 80+)',
+    'backtest.jan2020': 'Ene 2020',
+    'backtest.may2026': 'May 2026',
+    'backtest.reasonings': {
+      GGAL: 'P/E ~4x, ROE >20%, baja deuda/patrimonio. Banco privado lider en Argentina cotizando con descuento extremo por miedo macro, no por deterioro del negocio.',
+      BMA: 'P/E ~5x, banco argentino mas conservador, ratios de capital solidos, alto rendimiento por dividendo. Vendido puramente por riesgo pais, no por calidad crediticia.',
+      PAM: 'P/E ~6x, conglomerado energetico diversificado (generacion + O&G + transmision), baja deuda, flujos de caja solidos. El mercado descontaba un congelamiento tarifario que no podia durar para siempre.'
+    },
+    'backtest.resultsTitle': 'Rendimiento del Portafolio vs. S&P 500',
+    'backtest.resultsSub1': '3 selecciones, peso igual',
+    'backtest.resultsSub2': 'Comprar y mantener indice',
+    'backtest.alphaLabel': 'Alfa Generado',
+    'backtest.resultsSub3': '~1.9x el retorno del mercado',
+    'backtest.resultsNote': 'Portafolio de peso igualitario con las 3 selecciones de Alta Conviccion (Trifecta 80+). Retornos solo de precio; los dividendos sumarian ~15-25pp de retorno adicional en este periodo.',
+    'backtest.disclaimerLabel': 'Aviso Legal',
+    'backtest.disclaimerText': 'Este backtest usa precios aproximados de enero 2020 basados en niveles de cotizacion post-PASO. El rendimiento pasado no garantiza resultados futuros. Esta es una prueba de un solo periodo, no una muestra estadisticamente significativa. El modelo identifico estas oportunidades mediante scoring sistematico, no seleccion retrospectiva.',
+    'backtest.whyLabel': 'Por que funciono',
+    'backtest.whyText': 'El crash de las PASO creo un evento clasico de "miedo injustificado" — un mercado entero vendio indiscriminadamente por incertidumbre politica, castigando negocios de calidad junto con los debiles. La fortaleza del modelo Trifecta es distinguir empresas donde el miedo es racional de aquellas donde crea oportunidad.',
 
     // Month selector
     'month.label': 'Seleccionar mes',

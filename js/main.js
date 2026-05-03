@@ -10,13 +10,15 @@ import { renderTrifecta } from './trifecta.js';
 import { renderTechnical } from './technical.js';
 import { renderFundamentals } from './fundamentals.js';
 import { renderSentiment } from './sentiment.js';
+import { renderBacktest } from './backtest.js';
 import { updateStaticLabels } from './labels.js';
 
 const tabRenderers = {
   trifecta: renderTrifecta,
   technical: renderTechnical,
   fundamentals: renderFundamentals,
-  sentiment: renderSentiment
+  sentiment: renderSentiment,
+  backtest: renderBacktest
 };
 
 function syncDataState() {

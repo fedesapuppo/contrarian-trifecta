@@ -14,6 +14,7 @@ export function updateStaticLabels() {
   setTabText('technical', t('tab.technical'));
   setTabText('fundamentals', t('tab.fundamentals'));
   setTabText('sentiment', t('tab.sentiment'));
+  setTabText('backtest', t('tab.backtest'));
 
   setText('#footer-disclaimer', t('footer.disclaimer'));
 
