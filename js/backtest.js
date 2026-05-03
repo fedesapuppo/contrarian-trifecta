@@ -68,24 +68,24 @@ function renderHeader() {
 }
 
 function renderContext() {
-  const points = t('backtest.contextPoints');
+  const points = t('backtest.contextPoints') || [];
   return `
     <div class="backtest__section">
       <h3 class="backtest__section-title">${t('backtest.contextTitle')}</h3>
       <ul class="backtest__list">
-        ${points.map(p => `<li>${p}</li>`).join('')}
+        ${Array.isArray(points) ? points.map(p => `<li>${p}</li>`).join('') : ''}
       </ul>
     </div>
   `;
 }
 
 function renderMethodology() {
-  const steps = t('backtest.methodSteps');
+  const steps = t('backtest.methodSteps') || [];
   return `
     <div class="backtest__section">
       <h3 class="backtest__section-title">${t('backtest.methodTitle')}</h3>
       <ol class="backtest__list backtest__list--numbered">
-        ${steps.map(s => `<li>${s}</li>`).join('')}
+        ${Array.isArray(steps) ? steps.map(s => `<li>${s}</li>`).join('') : ''}
       </ol>
     </div>
   `;
@@ -105,7 +105,7 @@ function renderPickCards() {
 function renderPick(pick) {
   const vsClass = pick.vs_benchmark > 0 ? 'score--high' : 'score--low';
   const vsSign = pick.vs_benchmark > 0 ? '+' : '';
-  const reasonings = t('backtest.reasonings');
+  const reasonings = t('backtest.reasonings') || {};
 
   return `
     <div class="backtest__pick-card">

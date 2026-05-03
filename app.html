@@ -199,10 +199,10 @@
     window.onerror=function(m,s,l,c,e){showErr(m+'\n'+s+':'+l+':'+c+'\n'+(e&&e.stack||''));};
     window.addEventListener('unhandledrejection',function(e){showErr('Unhandled rejection:\n'+(e.reason&&e.reason.stack||e.reason));});
   </script>
-  <script type="module" src="js/main.js?v=8"></script>
+  <script type="module" src="js/main.js?v=1777826666"></script>
   <script>
     setTimeout(function(){
-      if(!document.querySelector('.data-table') && !document.querySelector('.pick-cards') && !document.querySelector('.empty-state') && !document.querySelector('.backtest')){
+      if(![...document.querySelectorAll('.tab-panel')].some(function(p){ return p.innerHTML.trim().length > 0; })){
         var el=document.createElement('pre');
         el.style.cssText='color:orange;padding:20px;position:fixed;bottom:0;left:0;right:0;background:#333;z-index:9999';
         el.textContent='Warning: Dashboard did not render after 3s. Check browser console (F12) for module errors.';
